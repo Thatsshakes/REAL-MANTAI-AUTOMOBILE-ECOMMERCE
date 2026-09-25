@@ -11,11 +11,15 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   
-  /* Your Exact Former Color Codes */
-  --color-brand-orange: #f97316;   /* Exact Tailwind orange-500 */
-  --color-brand-yellow: #facc15;   /* Exact Tailwind yellow-400 */
-  --color-brand-dark: #1e293b;     /* Exact Tailwind slate-800 */
-  --color-brand-bg: #f8fafc;       /* Clean slate-50 global background */
+  --color-brand-orange: #f97316;   
+  --color-brand-yellow: #facc15;   
+  --color-brand-dark: #1e293b;     
+  --color-brand-bg: #f8fafc;       
+
+  --color-app-bg: #f5f5f5;            /* Soft background gray tint */
+  --color-marketplace-text: #282828;  /* Primary text charcoal color */
+  --color-brand-primary: #f68b1e;     /* Signature brand color (Orange) */
+  --color-brand-hover: #e07b16;       /* Button hover state */
 }
 
 /* Dark mode styles, this helps us change from light to dark mode in our web page app */
