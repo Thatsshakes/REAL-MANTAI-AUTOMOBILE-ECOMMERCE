@@ -26,7 +26,7 @@ export default function NavbarDropdown({ activeData, onHover, onLeave }) {
 
           {/* Right Sub-Items Grid */}
           <div className="col-span-4 grid grid-cols-3 gap-2">
-            {/* 🟢 FIXED: Cleaned up the broken block lines to read directly from activeData */}
+            {/*Clean up of the broken block lines to read directly from activeData */}
             {activeData.subItems.map((subItem, sIdx) => (
               <a
                 key={sIdx}

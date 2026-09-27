@@ -1,6 +1,6 @@
 // app/layout.js
 import "./globals.css"; // Double check if it's "./globals.css" or "../globals.css" based on your location
-import Header from "@/components/common/Header"; // This path will now connect perfectly!
+import Header from "../components/common/Header"; // This path will now connect perfectly!
 
 export default function RootLayout({ children }) {
   return (

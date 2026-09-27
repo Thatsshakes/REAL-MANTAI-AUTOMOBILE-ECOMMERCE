@@ -4,7 +4,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-// 🟢 IMPORT THE NEW DROPDOWN COMPONENT FILE RIGHT HERE
+// IMPORTATION OF THE NEW DROPDOWN COMPONENT FILE IS RIGHT HERE
 import NavbarDropdown from "./NavbarDropdown";
 
 export default function MainNavbar() {
@@ -38,8 +38,8 @@ export default function MainNavbar() {
   };
 
   return (
-    //The z-40 stands for z-index and doesn't allow the dropdown enu to collapse quickly
-    <div className="w-full bg-white border-b border-gray-200 relative z-40">
+    //The z-40 stands for z-index and doesn't allow the dropdown menu to collapse quickly
+    <div className="w-full bg-white border-none shadow-none relative z-40">
       
       {/* Upper Row: Main Navigation Elements (Logo, Curved Search, Utilities) */}
       <div className="max-w-[1184px] mx-auto px-4 py-3 flex items-center justify-between gap-6">
@@ -57,7 +57,7 @@ export default function MainNavbar() {
               className="w-full pl-8 pr-4 py-1.5 border border-gray-300 rounded-l-full text-xs text-black focus:outline-none focus:border-[#f68b1e]"
             />
           </div>
-          <button className="bg-[#f68b1e] hover:bg-[#e07b16] text-white font-bold text-xs uppercase px-6 py-[9px] rounded-r-full transition-colors tracking-wider">
+          <button className="bg-[#f68b1e] hover:bg-[#e07b16] text-white font-bold text-xs uppercase px-6 py-[9px] rounded-r-full transition-colors tracking-wider cursor-pointer">
             Search
           </button>
         </div>
@@ -70,14 +70,14 @@ export default function MainNavbar() {
       </div>
 
       {/* Lower Row: Horizontal Custom Action Scroller Bar Strip */}
-      <div className="w-full border-t border-gray-100 hidden md:block bg-white relative">
-        <div className="max-w-[1184px] mx-auto px-8 relative flex items-center">
+      <div className="w-full border-b border-gray-200/80 hidden md:block bg-white relative group">
+        <div className="max-w-[1184px] mx-auto px-10 relative flex items-center">
 
           {/* LEFT SCROLL ARROW BUTTON */}
           <button 
             type="button" 
             onClick={scrollLeft}
-            className="absolute left-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold transition cursor-pointer"
+            className="absolute left-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
           >
             &lt;
           </button>
@@ -106,7 +106,7 @@ export default function MainNavbar() {
           <button 
             type="button" 
             onClick={scrollRight}
-            className="absolute right-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold transition cursor-pointer"
+            className="absolute right-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
           >
             &gt;
           </button>
@@ -114,7 +114,7 @@ export default function MainNavbar() {
         </div>
       </div>
 
-      {/* 🟢 FIXED DRAG AND DROPDOWN CONNECTOR HOOKS */}
+      {/* NAVBAR DRAG AND DROPDOWN CONNECTOR HOOKS */}
       <NavbarDropdown 
         activeData={autoLinks[hoveredIndex]} 
         // Keeps the index active when hovering the container box
