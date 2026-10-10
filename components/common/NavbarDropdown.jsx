@@ -33,7 +33,7 @@ export default function NavbarDropdown({ activeData, onHover, onLeave }) {
                 href="#"
                 className="text-xs text-gray-700 hover:text-[#f68b1e] transition-colors py-1 block font-medium border-none"
               >
-                🛠️ {subItem}
+                {subItem}
               </a>
             ))}
           </div>

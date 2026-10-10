@@ -2,7 +2,8 @@
 
 import {useState } from 'react';
 import HeroSection from "../components/home/HeroSection";
-import FlashSales from "../components/home/FlashSales"; 
+import FlashSales from "../components/home/FlashSales";
+import BrandShowcase from "../components/home/BrandShowcase"; 
 import OPayCheckout from '../components/OPayCheckout';
 export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -29,16 +30,18 @@ export default function HomePage() {
 
   return (
     // app-bg matches your custom Tailwind v4 global background token cleanly
-    <div className="w-full bg-[f5f5f5] font-sans pb-12">
+    <div className="w-full bg-[#f5f5f5] font-sans pb-12">
       
       {/* 1. My Hero Section tag to (Now cleanly houses all 3 columns!) */}
-      <div className="w-full bg-[f5f5f5] pb-1">
+      <div className="w-full bg-[#f5f5f5] pb-1">
         <HeroSection />
       </div>
 
       {/* THIS FLASHSALES LAYER CALLS THE FLASHSALES IMPORT FROM ABOVE: Mount the dark-red Flash Sales countdown strip right below the hero */}
       <FlashSales onSelectProduct={(dealItem) => setSelectedProduct(dealItem)} />
 
+      <BrandShowcase />
+      
       {/* 2. Main Marketplace Display Shelf */}
       <main className="max-w-[1184px] mx-auto px-4 mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         

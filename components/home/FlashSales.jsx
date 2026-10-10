@@ -2,34 +2,57 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// 🟢 Next.js magical router link engine
+// Next.js magical router link engine
 import Link from "next/link"; 
 
 export default function FlashSales({ onSelectProduct }) {
   // 1. DYNAMIC COUNTDOWN STATE: Hours, Minutes, Seconds
-  const [timeLeft, setTimeLeft] = useState({ hours: 4, minutes: 34, seconds: 12 });
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.hours === 0 && prev.minutes === 0 && prev.seconds === 0) {
-          clearInterval(timer);
-          return prev;
-        }
-        let s = prev.seconds - 1;
-        let m = prev.minutes;
-        let h = prev.hours;
+    setIsClient(true);
 
-        if (s < 0) {
-          s = 59;
-          m -= 1;
-        }
-        if (m < 0) {
-          m = 59;
-          h -= 1;
-        }
-        return { hours: h, minutes: m, seconds: s };
-      });
+    // 4h 34m 12s converted completely to milliseconds
+    const FLASH_SALE_DURATION = (23 * 60 * 60 + 59 * 60 + 59) * 1000;
+    let targetTime = localStorage.getItem("flash_sale_target");
+
+    // If no deadline timestamp exists yet in browser, create one and lock it in
+    if (!targetTime) {
+      const now = new Date().getTime();
+      targetTime = String(now + FLASH_SALE_DURATION);
+      localStorage.setItem("flash_sale_target", targetTime);
+    }
+
+    const targetTimestamp = parseInt(targetTime, 10);
+
+    // Calculate difference between now and the locked timestamp
+    const calculateRemainingTime = () => {
+      const now = new Date().getTime();
+      const difference = targetTimestamp - now;
+
+      if (difference <= 0) {
+        localStorage.removeItem("flash_sale_target");
+        return { hours: 0, minutes: 0, seconds: 0 };
+      }
+
+      return {
+        hours: Math.floor(difference / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000)
+      };
+    };
+
+    // Set initial time immediately
+    setTimeLeft(calculateRemainingTime());
+
+    const timer = setInterval(() => {
+      const remaining = calculateRemainingTime();
+      setTimeLeft(remaining);
+
+      if (remaining.hours === 0 && remaining.minutes === 0 && remaining.seconds === 0) {
+        clearInterval(timer);
+      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -46,6 +69,7 @@ export default function FlashSales({ onSelectProduct }) {
 
   // Helper function to format single numbers to double digits (e.g. 9 into 09)
   const padNum = (num) => String(num).padStart(2, "0");
+    if (!isClient) return null;
 
   return (
     <div className="max-w-[1195px] mx-auto px-4 mt-3">
@@ -55,8 +79,8 @@ export default function FlashSales({ onSelectProduct }) {
         
         {/* Left Side Group: Title Text & Countdown Box Blocks */}
         <div className="flex items-center gap-4 flex-wrap">
-          <span className="text-sm font-black uppercase tracking-wider flex items-center gap-1.5">
-            ⚡ Flash Sales
+          <span className="text-sm font-black Capitalcase tracking-wider flex items-center gap-1.5">
+            Flash Sales
           </span>
           
           <div className="flex items-center gap-1.5 text-xs font-black">
@@ -94,8 +118,7 @@ export default function FlashSales({ onSelectProduct }) {
                 </span>
               </div>
               
-              {/* 🟢 FIXED DYNAMIC ROUTING POINT: Changed <h3> to Next.js <Link> wrapper tag */}
-              {/* 💡 This tells Next.js to direct the shopper to /products/101 or /products/102 dynamically based on array ID mapping! */}
+              {/* This tells Next.js to direct the shopper to /products/101 or /products/102 dynamically based on array ID mapping! */}
               <Link 
                 href={`/products/${product.id}`} 
                 className="text-[#282828] font-semibold text-xs text-left line-clamp-2 leading-tight hover:text-[#f68b1e] transition-colors block cursor-pointer"
