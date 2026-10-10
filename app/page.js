@@ -7,7 +7,7 @@ import OPayCheckout from '../components/OPayCheckout';
 export default function HomePage() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Clean data store array for your spare parts inventory
+  // Clean data store array for my spare parts inventory
   const products = [
     {
       id: 1,

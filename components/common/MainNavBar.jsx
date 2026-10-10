@@ -7,22 +7,45 @@ import { useRef, useState } from "react";
 // IMPORTATION OF THE NEW DROPDOWN COMPONENT FILE IS RIGHT HERE
 import NavbarDropdown from "./NavbarDropdown";
 
+//IMPORTATION OF MY AUTOLINKS ICONS
+import { 
+  FaCog, 
+  FaBatteryFull, 
+  FaLightbulb, 
+  FaPlug, 
+  FaCar, 
+  FaTools,
+  FaCircleNotch
+} from "react-icons/fa";
+import {  
+  GiOilDrum, 
+  GiSpring, 
+  GiCarWheel 
+} from "react-icons/gi";
+import { RiLayoutLeftLine } from "react-icons/ri";
+
+
+// IMPORTATION OF MY REACT ICONS FOR ACCOUNT, HELP AND CART
+import { RiUserLine, RiQuestionLine } from "react-icons/ri";
+import { FiShoppingCart } from "react-icons/fi";
+
+
 export default function MainNavbar() {
   const scrollContainerRef = useRef(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const autoLinks = [
-    { name: "Engine Mechanics", icon: "⚙️", subItems: ["Pistons & Rings", "Timing Belts", "Engine Gaskets", "Crankshafts", "Valves & Guides"] },
-    { name: "Braking Components", icon: "🛑", subItems: ["Brake Pads", "Brake Discs", "Brake Calipers", "Master Cylinders", "ABS Sensors"] },
-    { name: "Car Batteries & Power", icon: "🔋", subItems: ["12V Batteries", "Alternators", "Starter Motors", "Battery Terminals", "Fuses"] },
-    { name: "Lubricants & Engine Oils", icon: "🛢️", subItems: ["Synthetic Motor Oil", "Transmission Fluid", "Brake Fluid", "Coolants", "Grease"] },
-    { name: "Headlights & Electricals", icon: "💡", subItems: ["LED Bulbs", "Headlight Assemblies", "Tail Lights", "Wiper Motors", "Wiring Harnesses"] },
-    { name: "Suspension Systems", icon: "🔩", subItems: ["Shock Absorbers", "Control Arms", "Ball Joints", "Coil Springs", "Tie Rod Ends"] },
-    { name: "Filters & Spark Plugs", icon: "🔌", subItems: ["Oil Filters", "Air Filters", "Fuel Filters", "Iridium Spark Plugs", "Cabin Filters"] },
-    { name: "Tires & Wheels", icon: "⭕", subItems: ["All-Season Tires", "Alloy Rims", "Wheel Lugs", "Tire Pressure Sensors", "Valves"] },
-    { name: "Car Accessories", icon: "🚗", subItems: ["Seat Covers", "Floor Mats", "Car Chargers", "Phone Mounts", "Steering Covers"] },
-    { name: "Body Parts & Mirrors", icon: "🪞", subItems: ["Side Mirrors", "Bumper Guards", "Grilles", "Door Handles", "Wiper Blades"] },
-    { name: "Tools & Equipment", icon: "🛠️", subItems: ["Hydraulic Jacks", "Wrench Sets", "OBD2 Scanners", "Jump Starters", "Toolboxes"] }
+    { name: "Engine Mechanics", icon: FaCog, subItems: ["Pistons & Rings", "Timing Belts", "Engine Gaskets", "Crankshafts", "Valves & Guides"] },
+    { name: "Braking Components", icon: FaCircleNotch, subItems: ["Brake Pads", "Brake Discs", "Brake Calipers", "Master Cylinders", "ABS Sensors"] },
+    { name: "Car Batteries & Power", icon: FaBatteryFull, subItems: ["12V Batteries", "Alternators", "Starter Motors", "Battery Terminals", "Fuses"] },
+    { name: "Lubricants & Engine Oils", icon: GiOilDrum, subItems: ["Synthetic Motor Oil", "Transmission Fluid", "Brake Fluid", "Coolants", "Grease"] },
+    { name: "Headlights & Electricals", icon: FaLightbulb, subItems: ["LED Bulbs", "Headlight Assemblies", "Tail Lights", "Wiper Motors", "Wiring Harnesses"] },
+    { name: "Suspension Systems", icon: GiSpring, subItems: ["Shock Absorbers", "Control Arms", "Ball Joints", "Coil Springs", "Tie Rod Ends"] },
+    { name: "Filters & Spark Plugs", icon: FaPlug, subItems: ["Oil Filters", "Air Filters", "Fuel Filters", "Iridium Spark Plugs", "Cabin Filters"] },
+    { name: "Tires & Wheels", icon: GiCarWheel, subItems: ["All-Season Tires", "Alloy Rims", "Wheel Lugs", "Tire Pressure Sensors", "Valves"] },
+    { name: "Car Accessories", icon: FaCar, subItems: ["Seat Covers", "Floor Mats", "Car Chargers", "Phone Mounts", "Steering Covers"] },
+    { name: "Body Parts & Mirrors", icon: RiLayoutLeftLine, subItems: ["Side Mirrors", "Bumper Guards", "Grilles", "Door Handles", "Wiper Blades"] },
+    { name: "Tools & Equipment", icon: FaTools, subItems: ["Hydraulic Jacks", "Wrench Sets", "OBD2 Scanners", "Jump Starters", "Toolboxes"] }
   ];
 
   const scrollLeft = () => {
@@ -63,9 +86,20 @@ export default function MainNavbar() {
         </div>
 
         <div className="flex items-center gap-5 text-[#282828] font-semibold text-xs">
-          <button className="hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">👤 Account ▼</button>
-          <button className="hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">❓ Help ▼</button>
-          <a href="/cart" className="hover:text-[#f68b1e] font-bold">🛒 Cart</a>
+          <button className="flex items-center gap-1 hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">
+            <RiUserLine className="w-4 h-4 text-current transition-colors" /> 
+            <span>Account</span>
+          </button>
+
+          <button className="flex items-center gap-1 hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">
+            <RiQuestionLine className="w-4 h-4 text-current transition-colors" />
+            <span>Help </span>
+          </button>
+
+          <a href="/cart" className="flex items-center gap-1 hover:text-[#f68b1e] font-bold group">
+            <FiShoppingCart className="w-4 h-4 text-current transition-colors" />
+            <span>Cart</span>
+          </a>
         </div>
       </div>
 
@@ -85,9 +119,12 @@ export default function MainNavbar() {
           {/* THE OVERFLOW CONTAINER TRACK ROW CONTAINER */}
           <div 
             ref={scrollContainerRef}
-            className="w-full flex items-center justify-start gap-6 text-[11px] font-medium text-gray-600 overflow-x-auto scrollbar-none py-3 relative scroll-smooth"
+            className="w-full flex items-center justify-start gap-6 text-[11px] font-medium text-black-600 overflow-x-auto scrollbar-none py-3 relative scroll-smooth"
           >
-            {autoLinks.map((category, idx) => (
+            {autoLinks.map((category, idx) => {
+              const IconComponent = category.icon;
+
+              return (
               <div 
                 key={idx} 
                 onMouseEnter={() => setHoveredIndex(idx)}
@@ -95,11 +132,12 @@ export default function MainNavbar() {
                 className="relative py-1"
               >
                 <a href="#" className="whitespace-nowrap hover:text-[#f68b1e] transition-colors tracking-wide flex items-center gap-1.5 py-0.5">
-                  <span className="text-sm opacity-90">{category.icon}</span>
+                  <IconComponent className="w-4 h-4 text-gray-550 group-hover/link:text-[#f68b1e] transition-colors" />
                   <span>{category.name}</span>
                 </a>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* RIGHT SCROLL ARROW BUTTON */}
