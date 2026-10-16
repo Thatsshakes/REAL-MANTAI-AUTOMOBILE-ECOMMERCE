@@ -66,9 +66,12 @@ export default function MainNavbar() {
       
       {/* Upper Row: Main Navigation Elements (Logo, Curved Search, Utilities) */}
       <div className="max-w-[1184px] mx-auto px-4 py-3 flex items-center justify-between gap-6">
-        <a href="/" className="text-xl font-black tracking-tighter text-[#282828] flex items-baseline select-none">
-          <span>THATSSHAKES</span>
-          <span className="text-xs font-bold tracking-normal text-[#f68b1e] ml-1.5 uppercase">Express</span>
+        <a href="/" className="flex items-center select-none shrink-0 group">
+          <img 
+            src = "/images/thatsshakes_express_logo_real.png"
+            alt = "logo_of_thatsshakes_express"
+            className="h-20 md:30 w-[260px] md:w-[320px] object-contain tansition-transform duration-200 group-hover:scale-[1.20]"
+          />
         </a>
 
         <div className="flex-1 max-w-[620px] flex items-center shadow-xs">
