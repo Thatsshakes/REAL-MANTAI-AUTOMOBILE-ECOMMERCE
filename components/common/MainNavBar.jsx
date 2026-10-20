@@ -1,168 +1,110 @@
-// components/common/MainNavbar.js
-
-//slider for my MainNavBar
 "use client";
 
-import { useRef, useState } from "react";
-// IMPORTATION OF THE NEW DROPDOWN COMPONENT FILE IS RIGHT HERE
-import NavbarDropdown from "./NavbarDropdown";
-
-//IMPORTATION OF MY AUTOLINKS ICONS
-import { 
-  FaCog, 
-  FaBatteryFull, 
-  FaLightbulb, 
-  FaPlug, 
-  FaCar, 
-  FaTools,
-  FaCircleNotch
-} from "react-icons/fa";
-import {  
-  GiOilDrum, 
-  GiSpring, 
-  GiCarWheel 
-} from "react-icons/gi";
-import { RiLayoutLeftLine } from "react-icons/ri";
-
-
-// IMPORTATION OF MY REACT ICONS FOR ACCOUNT, HELP AND CART
-import { RiUserLine, RiQuestionLine } from "react-icons/ri";
+import { useState } from "react";
+import Image from "next/image";
+import { RiUserLine, RiSearchLine, RiQrScanLine, RiArrowDownSLine } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 
+export default function MainNavBar() {
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-export default function MainNavbar() {
-  const scrollContainerRef = useRef(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
-  const autoLinks = [
-    { name: "Engine Mechanics", icon: FaCog, subItems: ["Pistons & Rings", "Timing Belts", "Engine Gaskets", "Crankshafts", "Valves & Guides"] },
-    { name: "Braking Components", icon: FaCircleNotch, subItems: ["Brake Pads", "Brake Discs", "Brake Calipers", "Master Cylinders", "ABS Sensors"] },
-    { name: "Car Batteries & Power", icon: FaBatteryFull, subItems: ["12V Batteries", "Alternators", "Starter Motors", "Battery Terminals", "Fuses"] },
-    { name: "Lubricants & Engine Oils", icon: GiOilDrum, subItems: ["Synthetic Motor Oil", "Transmission Fluid", "Brake Fluid", "Coolants", "Grease"] },
-    { name: "Headlights & Electricals", icon: FaLightbulb, subItems: ["LED Bulbs", "Headlight Assemblies", "Tail Lights", "Wiper Motors", "Wiring Harnesses"] },
-    { name: "Suspension Systems", icon: GiSpring, subItems: ["Shock Absorbers", "Control Arms", "Ball Joints", "Coil Springs", "Tie Rod Ends"] },
-    { name: "Filters & Spark Plugs", icon: FaPlug, subItems: ["Oil Filters", "Air Filters", "Fuel Filters", "Iridium Spark Plugs", "Cabin Filters"] },
-    { name: "Tires & Wheels", icon: GiCarWheel, subItems: ["All-Season Tires", "Alloy Rims", "Wheel Lugs", "Tire Pressure Sensors", "Valves"] },
-    { name: "Car Accessories", icon: FaCar, subItems: ["Seat Covers", "Floor Mats", "Car Chargers", "Phone Mounts", "Steering Covers"] },
-    { name: "Body Parts & Mirrors", icon: RiLayoutLeftLine, subItems: ["Side Mirrors", "Bumper Guards", "Grilles", "Door Handles", "Wiper Blades"] },
-    { name: "Tools & Equipment", icon: FaTools, subItems: ["Hydraulic Jacks", "Wrench Sets", "OBD2 Scanners", "Jump Starters", "Toolboxes"] }
+  const navItems = [
+    { name: "Shop", href: "/shop" },
+    { 
+      name: "Categories", 
+      href: "#",
+      dropdown: ["Engine", "Brakes", "Batteries", "Lubricants", "Suspension", "Filters", "Lighting", "Body"]
+    },
+    { 
+      name: "Brands", 
+      href: "#",
+      dropdown: ["Bosch", "NGK", "Brembo", "KYB", "Denso", "ACDelco", "Mobil"]
+    },
+    { 
+      name: "Company", 
+      href: "#",
+      dropdown: ["About Us", "Contact", "Support", "FAQ"]
+    },
   ];
 
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -250, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 250, behavior: "smooth" });
-    }
-  };
-
   return (
-    //The z-40 stands for z-index and doesn't allow the dropdown menu to collapse quickly
-    <div className="w-full bg-white border-none shadow-none relative z-40">
-      
-      {/* Upper Row: Main Navigation Elements (Logo, Curved Search, Utilities) */}
-      <div className="max-w-[1184px] mx-auto px-4 py-3 flex items-center justify-between gap-6">
-        <a href="/" className="flex items-center select-none shrink-0 group">
-          <img 
-            src = "/images/thatsshakes_express_logo_real.png"
-            alt = "logo_of_thatsshakes_express"
-            className="h-20 md:30 w-[260px] md:w-[320px] object-contain tansition-transform duration-200 group-hover:scale-[1.20]"
-          />
-        </a>
-
-        <div className="flex-1 max-w-[620px] flex items-center shadow-xs">
-          <div className="relative flex-1">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs z-10">🔍</span>
-            <input 
-              type="text" 
-              placeholder="Search products, brands and vehicle parts categories..." 
-              className="w-full pl-8 pr-4 py-1.5 border border-gray-300 rounded-l-full text-xs text-black focus:outline-none focus:border-[#f68b1e]"
+    <nav className="w-full bg-white border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 lg:px-6 h-16 flex items-center justify-between gap-6">
+        
+        {/* Logo */}
+        <div className="max-w-[1184px] mx-auto px-4 py-3 flex items-center justify-between gap-6">
+          <a href="/" className="flex items-center select-none shrink-0 group">
+            <img 
+              src = "/images/thatsshakes_express_logo_real.png"
+              alt = "logo_of_thatsshakes_express"
+              className="h-20 md:30 w-[260px] object-contain transition-transform duration-200 group-hover:scale-[1.20]"
             />
-          </div>
-          <button className="bg-[#f68b1e] hover:bg-[#e07b16] text-white font-bold text-xs uppercase px-6 py-[9px] rounded-r-full transition-colors tracking-wider cursor-pointer">
-            Search
-          </button>
+          </a>
+        </div>
+        
+        {/* Nav Links with Dropdowns */}
+        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-800">
+          {navItems.map((item) => (
+            <div 
+              key={item.name}
+              className="relative"
+              onMouseEnter={() => item.dropdown && setOpenDropdown(item.name)}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <a 
+                href={item.href} 
+                className="flex items-center gap-1 hover:text-orange-500 transition-colors py-2"
+              >
+                {item.name}
+                {item.dropdown && <RiArrowDownSLine className="w-4 h-4" />}
+              </a>
+
+              {/* Dropdown Panel */}
+              {item.dropdown && openDropdown === item.name && (
+                <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[180px] z-50">
+                  {item.dropdown.map((sub) => (
+                    <a
+                      key={sub}
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-orange-500 transition-colors"
+                    >
+                      {sub}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        <div className="flex items-center gap-5 text-[#282828] font-semibold text-xs">
-          <button className="flex items-center gap-1 hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">
-            <RiUserLine className="w-4 h-4 text-current transition-colors" /> 
-            <span>Account</span>
-          </button>
+        {/* Search */}
+        <div className="flex-1 max-w-md hidden lg:block">
+          <div className="relative">
+            <RiSearchLine className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <input
+              type="text"
+              placeholder="Search part no., name or VIN"
+              className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-orange-500"
+            />
+          </div>
+        </div>
 
-          <button className="flex items-center gap-1 hover:text-[#f68b1e] bg-transparent border-none cursor-pointer">
-            <RiQuestionLine className="w-4 h-4 text-current transition-colors" />
-            <span>Help </span>
+        {/* Right Icons */}
+        <div className="flex items-center gap-4 text-gray-700">
+          <button className="p-1.5 hover:text-orange-500" title="Scan QR">
+            <RiQrScanLine className="w-5 h-5" />
           </button>
-
-          <a href="/cart" className="flex items-center gap-1 hover:text-[#f68b1e] font-bold group">
-            <FiShoppingCart className="w-4 h-4 text-current transition-colors" />
-            <span>Cart</span>
+          <button className="hover:text-orange-500">
+            <RiUserLine className="w-5 h-5" />
+          </button>
+          <a href="/cart" className="relative hover:text-orange-500">
+            <FiShoppingCart className="w-5 h-5" />
+            <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+              0
+            </span>
           </a>
         </div>
       </div>
-
-      {/* Lower Row: Horizontal Custom Action Scroller Bar Strip */}
-      <div className="w-full border-b border-gray-200/80 hidden md:block bg-white relative group">
-        <div className="max-w-[1184px] mx-auto px-10 relative flex items-center">
-
-          {/* LEFT SCROLL ARROW BUTTON */}
-          <button 
-            type="button" 
-            onClick={scrollLeft}
-            className="absolute left-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
-          >
-            &lt;
-          </button>
-
-          {/* THE OVERFLOW CONTAINER TRACK ROW CONTAINER */}
-          <div 
-            ref={scrollContainerRef}
-            className="w-full flex items-center justify-start gap-6 text-[11px] font-medium text-black-600 overflow-x-auto scrollbar-none py-3 relative scroll-smooth"
-          >
-            {autoLinks.map((category, idx) => {
-              const IconComponent = category.icon;
-
-              return (
-              <div 
-                key={idx} 
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="relative py-1"
-              >
-                <a href="#" className="whitespace-nowrap hover:text-[#f68b1e] transition-colors tracking-wide flex items-center gap-1.5 py-0.5">
-                  <IconComponent className="w-4 h-4 text-gray-550 group-hover/link:text-[#f68b1e] transition-colors" />
-                  <span>{category.name}</span>
-                </a>
-              </div>
-              );
-            })}
-          </div>
-
-          {/* RIGHT SCROLL ARROW BUTTON */}
-          <button 
-            type="button" 
-            onClick={scrollRight}
-            className="absolute right-1 z-30 w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-md text-gray-500 hover:text-black text-xs font-bold pointer-events-auto opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
-          >
-            &gt;
-          </button>
-
-        </div>
-      </div>
-
-      {/* NAVBAR DRAG AND DROPDOWN CONNECTOR HOOKS */}
-      <NavbarDropdown 
-        activeData={autoLinks[hoveredIndex]} 
-        // Keeps the index active when hovering the container box
-        onHover={() => setHoveredIndex(hoveredIndex)} 
-        // Wipes the index to null only when exiting completely
-        onLeave={() => setHoveredIndex(null)} 
-      />
-    </div>
+    </nav>
   );
 }
