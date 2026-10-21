@@ -4,104 +4,116 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { RiSearchLine, RiQrScanLine } from "react-icons/ri";
 
-// Registeration of the animation scroll trigger system safely
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ScrollAnimatedHero() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    // THE GSAP TIMELINE ENGINE
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",      // Triggers when the top of the header sections hit the top of the screen
-        end: "bottom 20%",         // Pinned duration of the scrolling scene in pixels
-        scrub: 1,            // Smooth mouse wheel animation response lag
-        pin: false,             // Locks the page in place while the text and graphics animate
+    const ctx = gsap.context(() => {
+      // Initial states for text
+      gsap.set(".hero-badge", { opacity: 0, y: 20 });
+      gsap.set(".hero-title", { opacity: 0, y: 50 });
+      gsap.set(".hero-subtitle", { opacity: 0, y: 30 });
+      gsap.set(".hero-search", { opacity: 0, y: 20 });
+      gsap.set(".hero-cta", { opacity: 0, y: 20 });
 
-        invalidateOnRefresh: true,
-        fastScrollEnd: true
-      }
-    });
+      // Text entrance
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          toggleActions: "play none none reverse",
+        },
+      });
 
-    // CODES CONTROLLING THE CINEMATIC CAMERA MOVEMENTS
-    tl.to(".hero-bg-layer", {
-      scale: 1.15,             // Slowly zooms your background picture forward like a camera lens
-      y: -30,                  // Shifts the frame upward slightly
-      duration: 1
-    }, 0)
-    .to(".hero-car-layer", {
-      scale: 1.05,             // Animates your vehicle product cutout moving forward slightly faster
-      x: -50,                  // Pans the object horizontally to create a 3D video illusion
-      filter: "drop-shadow(0 30px 50px rgba(246,139,30,0.25))",
-      duration: 1
-    }, 0)
-    .to(".hero-initial-text", {
-      opacity: 0,              // Fades out your landing headline as the user spins their mouse wheel
-      y: -50,
-      duration: 0.4
-    }, 0)
-    .to(".hero-revealed-text", 
-      { y: -30, opacity: 0.7, duration: 0.4 }, // Smoothly slides your marketplace catalog buttons into view halfway down the scroll
-      0.4
-    );
+      tl.to(".hero-badge", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.1)
+        .to(".hero-title", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0.25)
+        .to(".hero-subtitle", { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.45)
+        .to(".hero-search", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.55)
+        .to(".hero-cta", { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 0.65);
 
+      // Background zoom on scroll
+      // Scroll down = zoom out, Scroll up = zoom in
+      gsap.fromTo(
+        ".hero-bg img",
+        { scale: 1.25 },
+        {
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={sectionRef} className="max-w-[1165px] mx-auto h-[440px] bg-white mt-2 relative overflow-hidden rounded-3xl border-none select-none">
-      
-      {/* THIS IS WHERE TO INPUT YOUR BACKDROP IMAGE FILE HERE BELOW */}
-      <div 
-        className="hero-bg-layer absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all scale-[1.04] -translate-y-3"
-        style={{ backgroundImage: `url('/images/bg-landscape.jpg')` }} 
-      />
-
-      {/* Dark premium shadow overlay wrapper to protect layout readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-10" />
-
-      {/* THIS IS WHERE TO INPUT YOUR FRONT VEHICLE/PRODUCT CUTOUT IMAGE HERE BELOW */}
-      <div className="hero-car-layer absolute right-0 top-30 translate-y-0 w-full max-w-[500px] z-20 flex items-center justify-center">
-        <img 
-          src="/images/car-cutout.png" 
-          alt="Foreground Animated Element"
-          className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+    <section
+      ref={sectionRef}
+      className="relative min-h-[560px] md:min-h-[640px] flex items-center overflow-hidden"
+    >
+      {/* Background */}
+      <div className="hero-bg absolute inset-0">
+        <img
+          src="/images/bg-landscape.jpg"
+          alt="Hero"
+          className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
       </div>
 
-      {/* LAYER THREE: Floating Typography Interface Stack */}
-      <div className="absolute inset-0 z-30 max-w-[1184px] mx-auto px-6 flex flex-col justify-center text-white pointer-events-none">
-        
-        {/* Intro Text Group (Fades away on scroll) */}
-        <div className="hero-initial-text max-w-md">
-          <span className="bg-[#f68b1e] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded">
-            THATSSHAKES Express
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+        <div className="max-w-xl text-white">
+          <span className="hero-badge inline-block text-xs font-semibold tracking-wider bg-orange-500 text-white px-3 py-1 rounded-full mb-4">
+            ENGINEERED FOR SPEED
           </span>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight uppercase mt-3 mb-2 leading-none">
-            GENUINE <br />AUTO PARTS
+
+          <h1 className="hero-title text-5xl md:text-7xl font-black leading-[0.95] uppercase">
+            UNLEASH<br />
+            <span className="text-orange-500">MAX POWER</span>
           </h1>
-          <p className="text-slate-300 text-xs font-normal max-w-xs leading-relaxed">
-            Scroll down to test performance constraints and experience live diagnostic transitions.
+
+          <p className="hero-subtitle mt-5 text-lg text-gray-200 max-w-md">
+            Premium performance parts built for speed, precision, and reliability.
           </p>
-        </div>
 
-        {/* Action Text Group (Reveals cleanly on scroll) */}
-        <div className="hero-revealed-text absolute max-w-md pointer-events-auto">
-          <span className="bg-white/10 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded backdrop-blur-xs border border-white/20">
-            Engineered For Speed
-          </span>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight uppercase mt-3 mb-4 leading-none">
-            UNLEASH <br /><span className="text-[#f68b1e]">MAX POWER</span>
-          </h2>
-          <button className="bg-[#f68b1e] hover:bg-[#e07b16] text-white font-bold text-xs uppercase px-8 py-3.5 rounded-xl transition-all shadow-md active:scale-95 cursor-pointer tracking-wider">
-            Shop Performance Catalog
-          </button>
-        </div>
+          {/* Search / VIN */}
+          <div className="hero-search flex max-w-md mt-6 mb-4">
+            <div className="relative flex-1">
+              <RiSearchLine className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Part number, VIN or vehicle reg"
+                className="w-full bg-white/10 border border-white/20 rounded-l-lg pl-12 pr-4 py-3.5 text-sm text-white placeholder-gray-300 focus:outline-none focus:border-orange-500"
+              />
+            </div>
+            <button className="bg-orange-500 hover:bg-orange-600 px-6 rounded-r-lg font-medium">
+              Find part
+            </button>
+          </div>
 
+          {/* Buttons */}
+          <div className="hero-cta flex gap-3">
+            <button className="flex items-center gap-2 border border-white/30 hover:bg-white/10 px-5 py-2.5 rounded-lg text-sm">
+              <RiQrScanLine className="w-4 h-4" />
+              Scan a part QR
+            </button>
+            <button className="flex items-center gap-2 border border-white/30 hover:bg-white/10 px-5 py-2.5 rounded-lg text-sm">
+              Shop Performance Catalog
+            </button>
+          </div>
+        </div>
       </div>
-
-    </div>
+    </section>
   );
 }

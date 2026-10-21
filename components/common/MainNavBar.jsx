@@ -21,6 +21,15 @@ export default function MainNavBar() {
       dropdown: ["Bosch", "NGK", "Brembo", "KYB", "Denso", "ACDelco", "Mobil"]
     },
     { 
+      name: "QR Tools",
+      href: "/qr-tools",
+      dropdown: [
+        "Generate QR",
+        "Scan QR",
+        "My QR Codes",
+        "Print Labels"]
+    },
+    { 
       name: "Company", 
       href: "#",
       dropdown: ["About Us", "Contact", "Support", "FAQ"]
@@ -37,7 +46,7 @@ export default function MainNavBar() {
             <img 
               src = "/images/thatsshakes_express_logo_real.png"
               alt = "logo_of_thatsshakes_express"
-              className="h-20 md:30 w-[260px] object-contain transition-transform duration-200 group-hover:scale-[1.20]"
+              className="h-20 md:30 w-[160px] object-contain transition-transform duration-200 group-hover:scale-[1.20]"
             />
           </a>
         </div>
