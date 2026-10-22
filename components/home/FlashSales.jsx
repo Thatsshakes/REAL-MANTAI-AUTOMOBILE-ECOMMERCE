@@ -72,10 +72,10 @@ export default function FlashSales({ onSelectProduct }) {
     if (!isClient) return null;
 
   return (
-    <div className="max-w-[1195px] mx-auto px-4 mt-3">
+    <div className="max-w-full mx-auto">
       
       {/* THE CORE DARK-RED HEADER BANNER WRAPPER CONTAINER */}
-      <div className="w-full bg-[#e61601] rounded-t-[20px] text-white px-6 py-3 flex items-center justify-between shadow-xs select-none">
+      <div className="w-full bg-[#e61601] text-white px-6 py-3 flex items-center justify-between shadow-xs select-none">
         
         {/* Left Side Group: Title Text & Countdown Box Blocks */}
         <div className="flex items-center gap-4 flex-wrap">
@@ -101,7 +101,7 @@ export default function FlashSales({ onSelectProduct }) {
       </div>
 
       {/* LOWER GRID SHELF: 5 Horizontal product discount item cards */}
-      <div className="w-full bg-white border border-t-0 border-gray-200 rounded-b-[20px] p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 shadow-sm">
+      <div className="w-full bg-white border border-t-0 border-gray-200 p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 shadow-sm">
         {flashProducts.map((product) => (
           <div key={product.id} className="bg-white rounded-xl p-3 border border-gray-100 hover:shadow-md transition duration-150 relative flex flex-col justify-between group">
             
