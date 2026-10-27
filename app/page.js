@@ -5,6 +5,7 @@ import HeroSection from "@/components/home/HeroSection";
 import TrustStrip from "@/components/home/TrustStrip";
 import FlashSales from "@/components/home/FlashSales";
 import CategoryMenu from "@/components/home/CategoryMenu";
+import FeaturedParts from "@/components/home/FeaturedParts";
 import BrandShowcase from "@/components/home/BrandShowcase";
 import OPayCheckout from "@/components/OPayCheckout";
 
@@ -43,6 +44,9 @@ export default function HomePage() {
 
       {/* Category Menu */}
       <CategoryMenu />
+
+      {/* Featured Parts */}
+      <FeaturedParts />
 
       {/* Brand Showcase */}
       <BrandShowcase />

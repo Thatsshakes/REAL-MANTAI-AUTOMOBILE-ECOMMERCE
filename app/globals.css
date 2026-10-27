@@ -37,6 +37,16 @@
   }
 }
 
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.badge-blink {
+  animation: badgePulse 1.5s ease-in-out infinite;
+}
+
 /* 4. My Global DOM which overrides and tag rendering custom defaults */
 body {
   background: var(--background);
