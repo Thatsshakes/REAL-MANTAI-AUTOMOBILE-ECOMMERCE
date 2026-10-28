@@ -14,8 +14,8 @@ const featuredParts = [
     reviews: 210,
     badge: "BEST SELLER",
     badgeIcon: RiVipCrownLine,
-    badgeStyle: "bg-orange-400 text-white",
-    image: "/images/products/brake-pads.jpg",
+    badgeStyle: "text-white",
+    image: "/images/featuredproducts/frontbrake-pads-set.jpg",
   },
   {
     brand: "Bosch",
@@ -26,7 +26,7 @@ const featuredParts = [
     reviews: 96,
     badge: "NEW",
     badgeIcon: RiSparklingLine,
-    badgeStyle: "bg-orange-400 text-white",
+    badgeStyle: "text-white",
     image: "/images/products/oil-filter.jpg",
   },
   {
@@ -39,7 +39,7 @@ const featuredParts = [
     reviews: 74,
     badge: "SALE",
     badgeIcon: RiPriceTag3Line,
-    badgeStyle: "bg-orange-400 text-white",
+    badgeStyle: "text-white",
     image: "/images/products/brake-disc.jpg",
   },
   {
@@ -81,7 +81,7 @@ export default function FeaturedParts() {
             <h2 className="text-2xl font-bold text-gray-900">Featured parts</h2>
             <p className="text-sm text-gray-500 mt-1">Popular this week</p>
           </div>
-          <a href="#" className="text-sm text-orange-500 hover:underline">
+          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:text-white hover:bg-orange-400 font-medium px-6 py-2.5 rounded-lg transition-colors">
             View all →
           </a>
         </div>
@@ -96,17 +96,17 @@ export default function FeaturedParts() {
               >
                 {/* Blinking Badge */}
                 {part.badge && (
-                  <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded flex items-center gap-1 badge-blink ${part.badgeStyle}`}>
+                  <span className={`absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded flex items-center gap-1 z-10 badge-blink ${part.badgeStyle}`}>
                     {BadgeIcon && <BadgeIcon className="w-3 h-3" />}
                     {part.badge}
                   </span>
                 )}
 
-                <div className="bg-gray-50 h-44 flex items-center justify-center">
+                <div className="bg-gray-10 h-72 flex items-center justify-center p-2 overflow-hidden relative">
                   <img
                     src={part.image}
                     alt={part.name}
-                    className="max-h-36 object-contain"
+                    className="w-full h-auto max-h-full object-contain transition-transform duration-300 ease-out hover:scale-110 group-hover:scale-105 transform"
                     onError={(e) => (e.target.style.display = "none")}
                   />
                 </div>
@@ -141,7 +141,7 @@ export default function FeaturedParts() {
         </div>
 
         <div className="text-center mt-8">
-          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:bg-orange-50 font-medium px-6 py-2.5 rounded-lg transition-colors">
+          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium px-6 py-2.5 rounded-lg transition-colors">
             View All Products
           </a>
         </div>

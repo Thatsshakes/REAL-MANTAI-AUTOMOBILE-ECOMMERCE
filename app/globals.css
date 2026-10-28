@@ -38,13 +38,28 @@
 }
 
 
-@keyframes badgePulse {
+/* @keyframes badgePulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.6; }
 }
 
 .badge-blink {
   animation: badgePulse 1.5s ease-in-out infinite;
+} */
+
+@keyframes orangeToBlackBlink {
+  0%, 100% {
+    background-color: #fb923c;
+    color: #ffffff;
+  }
+  50% {
+    background-color: #000000;
+    color: #ffffff;
+  }
+}
+
+.badge-blink {
+  animation: orangeToBlackBlink 2s infinite ease-in-out;
 }
 
 /* 4. My Global DOM which overrides and tag rendering custom defaults */
