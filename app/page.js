@@ -7,6 +7,7 @@ import FlashSales from "@/components/home/FlashSales";
 import CategoryMenu from "@/components/home/CategoryMenu";
 import FeaturedParts from "@/components/home/FeaturedParts";
 import BrandShowcase from "@/components/home/BrandShowcase";
+import WhyShopWithUs from "@/components/home/WhyShopWithUs";
 import OPayCheckout from "@/components/OPayCheckout";
 
 export default function HomePage() {
@@ -50,6 +51,10 @@ export default function HomePage() {
 
       {/* Brand Showcase */}
       <BrandShowcase />
+
+      {/* Why shop with us */}
+      <WhyShopWithUs />
+      
 
       {/* Products + Checkout */}
       <main className="max-w-[1184px] mx-auto px-4 mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">

@@ -121,7 +121,7 @@ export default function FlashSales({ onSelectProduct }) {
               {/* This tells Next.js to direct the shopper to /products/101 or /products/102 dynamically based on array ID mapping! */}
               <Link 
                 href={`/products/${product.id}`} 
-                className="text-[#282828] font-semibold text-xs text-left line-clamp-2 leading-tight hover:text-[#f68b1e] transition-colors block cursor-pointer"
+                className="text-black-500 text-sm text-left line-clamp-2 leading-tight hover:text-[#f68b1e] transition-colors block cursor-pointer"
               >
                 {product.name}
               </Link>
