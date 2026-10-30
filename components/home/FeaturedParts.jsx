@@ -81,7 +81,7 @@ export default function FeaturedParts() {
             <h2 className="text-2xl font-bold text-gray-900">Featured parts</h2>
             <p className="text-sm text-gray-500 mt-1">Popular this week</p>
           </div>
-          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:text-white hover:bg-orange-400 font-medium px-6 py-2.5 rounded-lg transition-colors">
+          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:text-white hover:bg-orange-400 font-normal px-6 py-1.5 rounded-lg transition-colors">
             View all →
           </a>
         </div>
@@ -114,7 +114,7 @@ export default function FeaturedParts() {
                 <div className="p-4">
                   <p className="text-[10px] font-semibold text-gray-400 tracking-wider">{part.brand}</p>
                   <h3 className="font-semibold text-sm text-gray-900 mt-1 leading-tight line-clamp-2">{part.name}</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Part no. {part.partNo}</p>
+                  <p className="text-xs text-gray-400 mt-0.5">Part no. {part.partNo}</p>
 
                   <div className="flex items-center gap-1 mt-2">
                     <StarRating rating={part.rating} />
@@ -141,7 +141,7 @@ export default function FeaturedParts() {
         </div>
 
         <div className="text-center mt-8">
-          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-medium px-6 py-2.5 rounded-lg transition-colors">
+          <a href="#" className="inline-block border border-orange-500 text-orange-500 hover:bg-orange-400 hover:text-white font-normal px-5 py-1.5 rounded-lg transition-colors">
             View All Products
           </a>
         </div>

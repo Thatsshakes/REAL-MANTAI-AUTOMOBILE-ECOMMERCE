@@ -45,7 +45,7 @@ export default function QRBand() {
                 size={160}
               />
               <p className="text-xs text-gray-500 mt-3">
-                thatsshakes.com/p/BP-2041
+                thatsshakesexp.com/p/BP-2041
               </p>
             </div>
           </div>
