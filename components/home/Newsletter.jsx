@@ -2,13 +2,15 @@
 "use client";
 
 import { useState } from "react";
+import { Lottie } from "lottie-react";
+import deliveryAnimation from "@/public/animations/delivery.json";
+
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Later: connect to your backend / email service
     alert(`Subscribed with: ${email}`);
     setEmail("");
   };
@@ -17,22 +19,25 @@ export default function Newsletter() {
     <section className="py-12">
       <div className="max-w-6xl mx-auto px-4">
         <div className="relative bg-gradient-to-r from-gray-900 to-orange-500 rounded-3xl px-6 md:px-10 py-10 md:py-12 text-white overflow-hidden">
-          
-          {/* Optional illustration placeholder */}
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 hidden md:block">
-            <div className="w-16 h-16 bg-white/10 rounded-xl flex items-center justify-center text-2xl">
-              🛵
+            
+            {/* Lottie Animation full inside the banner */}
+            <div className="absolute inset-0 opacity-300 pointer-events-none">
+              <Lottie 
+                src={deliveryAnimation}
+                autoplay
+                loop
+                style={{ width: "100%", height: "100%" }}
+              />
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
             {/* Left text */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold mb-2">
                 Get 10% Off Your First Order
               </h2>
-              <p className="text-gray-300 text-sm md:text-base">
-                Join our newsletter for exclusive deals, new arrivals, and insider offers — straight to your inbox. No spam, ever.
+              <p className="text-gray-200 text-sm md:text-base">
+                Join our newsletter for exclusive deals, new arrivals and insider offers — straight to your inbox. No spam, ever.
               </p>
             </div>
 
@@ -44,7 +49,7 @@ export default function Newsletter() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-sm text-black placeholder-black focus:outline-none focus:border-orange-400"
               />
               <button
                 type="submit"
