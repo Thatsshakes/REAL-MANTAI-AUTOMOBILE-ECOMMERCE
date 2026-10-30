@@ -8,6 +8,7 @@ import CategoryMenu from "@/components/home/CategoryMenu";
 import FeaturedParts from "@/components/home/FeaturedParts";
 import BrandShowcase from "@/components/home/BrandShowcase";
 import WhyShopWithUs from "@/components/home/WhyShopWithUs";
+import QRBand from "@/components/home/QRBand";
 import OPayCheckout from "@/components/OPayCheckout";
 
 export default function HomePage() {
@@ -54,6 +55,9 @@ export default function HomePage() {
 
       {/* Why shop with us */}
       <WhyShopWithUs />
+
+      {/* QRBand */}
+      <QRBand />
       
 
       {/* Products + Checkout */}
