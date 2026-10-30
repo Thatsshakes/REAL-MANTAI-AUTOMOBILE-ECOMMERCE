@@ -13,6 +13,7 @@ import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
 import FAQ from "@/components/home/FAQ";
 
+
 export default function HomePage() { useState(null);
   return (
     <div className="w-full bg-[#f5f5f5] font-sans pb-12">
