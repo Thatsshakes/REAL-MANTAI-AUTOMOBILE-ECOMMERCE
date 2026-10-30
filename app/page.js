@@ -11,6 +11,7 @@ import WhyShopWithUs from "@/components/home/WhyShopWithUs";
 import QRBand from "@/components/home/QRBand";
 import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
+import FAQ from "@/components/home/FAQ";
 
 export default function HomePage() { useState(null);
   return (
@@ -44,6 +45,9 @@ export default function HomePage() { useState(null);
 
       {/* NewsLetter */}
       <Newsletter />
+
+      {/* FAQ */}
+      <FAQ />
       
     </div>
   );
