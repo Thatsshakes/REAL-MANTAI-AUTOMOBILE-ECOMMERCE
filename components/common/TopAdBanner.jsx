@@ -1,24 +1,32 @@
 // components/common/TopAdBanner.js
+"use client";
+
 export default function TopAdBanner() {
+  const messages = [
+    "Genuine Auto Parts Trusted by Thousands",
+    "Same-Day Dispatch on Orders Before 2PM",
+    "10% Off Your First Order — Use Code: SHAKES10",
+    "Free Delivery on Orders Over ₦100,000",
+    "12-Month Warranty",
+  ];
+
   return (
-    <div className="w-full bg-[#8a3ffc] text-white overflow-hidden shadow-sm">
-      <div className="max-w-[1184px] mx-auto flex items-center justify-between h-[50px] px-4">
-        
-        {/* Left Side: Brand Ad Graphic Label */}
-        <div className="flex items-center gap-3">
-          <div className="font-serif italic text-lg border-b border-white leading-none">V</div>
-          <div className="flex flex-col">
-            <span className="text-sm font-black uppercase tracking-wider leading-none">Brand Day</span>
-            <span className="text-[9px] opacity-80 tracking-tight">Up to 30% off top items</span>
-          </div>
-        </div>
-
-        {/* Right Side: Call to Order Callout */}
-        <div className="bg-white text-[#282828] h-full flex flex-col justify-center items-end px-6 border-l border-gray-100 min-w-[180px]">
-          <span className="text-[9px] text-gray-400 font-bold uppercase tracking-tight">Call to order</span>
-          <span className="text-xs font-black tracking-tight">0201 888 3300</span>
-        </div>
-
+    <div className="bg-black text-white text-xs md:text-xs overflow-hidden py-2">
+      <div className="flex animate-marquee whitespace-nowrap">
+        {/* First set */}
+        {messages.map((msg, i) => (
+          <span key={i} className="mx-6 flex items-center gap-2">
+            <span className="w-1 h-1 bg-orange-500 rounded-full" />
+            {msg}
+          </span>
+        ))}
+        {/* Duplicate for seamless loop */}
+        {messages.map((msg, i) => (
+          <span key={`dup-${i}`} className="mx-6 flex items-center gap-2">
+            <span className="w-1 h-1 bg-orange-500 rounded-full" />
+            {msg}
+          </span>
+        ))}
       </div>
     </div>
   );

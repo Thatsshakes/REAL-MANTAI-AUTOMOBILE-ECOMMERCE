@@ -53,7 +53,7 @@ export default function BrandShowcase() {
         <div className="text-center mb-8">
           <h2 className="text-xl md:text-2xl font-bold text-gray-900 flex items-center justify-center gap-2">
             Trusted Brands
-            <span className="text-green-500">✓</span>
+            <span className="text-orange-400">✓</span>
           </h2>
         </div>
 

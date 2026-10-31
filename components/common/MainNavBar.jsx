@@ -12,8 +12,8 @@ export default function MainNavBar() {
     { name: "Shop", href: "/shop" },
     { 
       name: "Categories", 
-      href: "#",
-      dropdown: ["Engine", "Brakes", "Batteries", "Lubricants", "Suspension", "Filters", "Lighting", "Body"]
+      href: "#categories",
+      dropdown: ["Engine", "Brakes", "Batteries", "Lubricants", "Suspension", "Filters", "Electrical", "Body"]
     },
     { 
       name: "Brands", 
@@ -52,7 +52,7 @@ export default function MainNavBar() {
         </div>
         
         {/* Nav Links with Dropdowns */}
-        <div className="hidden md:flex items-center gap-7 text-sm font-medium text-gray-800">
+        <div className="hidden md:flex items-center gap-7 text-xs font-medium text-gray-800">
           {navItems.map((item) => (
             <div 
               key={item.name}
