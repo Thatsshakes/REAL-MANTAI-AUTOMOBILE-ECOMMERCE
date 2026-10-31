@@ -103,9 +103,9 @@ export default function MainNavBar() {
           <button className="p-1.5 hover:text-orange-500" title="Scan QR">
             <RiQrScanLine className="w-5 h-5" />
           </button>
-          <button className="hover:text-orange-500">
+          <a href="/login" className="hover:text-orange-500">
             <RiUserLine className="w-5 h-5" />
-          </button>
+          </a>
           <a href="/cart" className="relative hover:text-orange-500">
             <FiShoppingCart className="w-5 h-5" />
             <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
